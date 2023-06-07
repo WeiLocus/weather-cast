@@ -1,4 +1,4 @@
-import './App.css'
+import { StyledComponent } from "styled-components"
 
 function App() {
 
