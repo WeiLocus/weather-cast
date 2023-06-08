@@ -13,7 +13,7 @@ export const Card = styled.div`
   min-width: 35%;
   padding: 2rem 1rem;
   background-image: linear-gradient(to right bottom,
-    rgba(114,185,220, 0.5),
+    rgba(114,185,220, 0.4),
     rgba(238,238,238, 0.4)),url("./images/bg-card.jpg");
   background-size: cover;
   box-shadow: 0 0.3rem 0.6rem 0 #999999;
@@ -59,6 +59,12 @@ export const AirFlow = styled.div`
   margin-bottom: 1.25rem;
   font-size: var(--fs-basic);
   font-weight: 300;
+    
+  svg {
+    width: 1.6rem;
+    height: auto;
+    margin-right: 0.6rem;
+  }
 `;
 
 export const Rain = styled.div`
@@ -66,6 +72,12 @@ export const Rain = styled.div`
   align-items: center;
   font-size: var(--fs-basic);
   font-weight: 300;
+
+  svg {
+    width: 1.6rem;
+    height: auto;
+    margin-right: 0.6rem;
+  }
 `;
 
 export const Refresh = styled.div`

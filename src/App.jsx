@@ -1,5 +1,6 @@
 import { GlobalStyle } from "../globalStyles"
 import { Container, Card, TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh } from "./styles/style"
+import { BsFillCloudRainFill, BsWind} from "react-icons/bs"
 
 function App() {
 
@@ -21,9 +22,10 @@ function App() {
               多雲時晴
             </Description>
             <AirFlow>
-              10m/h
+              <BsWind/>10m/h
             </AirFlow>
-            <Rain>66%</Rain>
+            <Rain>
+              <BsFillCloudRainFill/>66%</Rain>
             <Refresh>上午12:00</Refresh>
           </BottomCard>
         </Card>
