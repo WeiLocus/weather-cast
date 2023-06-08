@@ -87,4 +87,11 @@ export const Refresh = styled.div`
   display: inline-flex;
   align-items: flex-end;
   font-size: var(--fs-small);
+
+  svg {
+    width: 1.2rem;
+    height: auto;
+    margin-left: 0.3rem;
+  }
+  
 `;

@@ -1,6 +1,7 @@
 import { GlobalStyle } from "../globalStyles"
 import { Container, Card, TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh } from "./styles/style"
 import { BsFillCloudRainFill, BsWind} from "react-icons/bs"
+import { AiOutlineReload } from "react-icons/ai"
 
 function App() {
 
@@ -25,8 +26,11 @@ function App() {
               <BsWind/>10m/h
             </AirFlow>
             <Rain>
-              <BsFillCloudRainFill/>66%</Rain>
-            <Refresh>上午12:00</Refresh>
+              <BsFillCloudRainFill/>66%
+            </Rain>
+            <Refresh>
+              上午12:00 <AiOutlineReload />
+            </Refresh>
           </BottomCard>
         </Card>
       </Container>
