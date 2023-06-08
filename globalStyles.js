@@ -13,9 +13,6 @@ export const GlobalStyle = createGlobalStyle`
     --fs-small: 0.8rem;
 
     /* colors */
-    --color-bg: #ededed;
-    --color-primary: #f9f9f9;
-    --color-secondary: #3f3636;
     --color-temp: #149ECA;
 
   }
