@@ -6,17 +6,18 @@ export const Container = styled.div`
   justify-content: center;
   min-width: 360px;
   height: 100%;
-  background-color: var(--color-bg);
+  background-color: ${ ( {theme} ) => theme.bgColor };
 `
 export const Card = styled.div`
   position: relative;
   min-width: 35%;
   padding: 2rem 1rem;
   background-image: linear-gradient(to right bottom,
-    rgba(114,185,220, 0.4),
-    rgba(238,238,238, 0.4)),url("./images/bg-card.jpg");
+    ${ ( {theme} ) => theme.cardColor1 },
+    ${ ( {theme} ) => theme.cardColor2 }),url(${ ( {theme} ) => theme.cardImage });
   background-size: cover;
-  box-shadow: 0 0.3rem 0.6rem 0 #999999;
+  box-shadow: ${ ( {theme} ) => theme.boxShadow };
+
   border-radius: 5px;
 ` 
 
@@ -27,7 +28,7 @@ export const TopCard = styled.div`
 `
 
 export const BottomCard = styled.div`
-  color: var(--color-secondary);
+  color: ${ ( {theme} ) => theme.textColor };
 
   .day-icon {
     position: absolute;
@@ -40,19 +41,20 @@ export const BottomCard = styled.div`
 export const Location = styled.div`
   margin-bottom: 1.2rem;
   font-size: var(--fs-big-100);
-  color: #212121;
+  color: ${ ( {theme} ) => theme.titleColor };
 `
 
 export const Temperature = styled.div`
+  display: flex;
   color: var(--color-temp);
   font-size: var(--fs-big-500);
   font-weight: 300;
-  display: flex;
 `;
 
 export const Description = styled.div`
-  font-size: var(--fs-basic);
   margin-bottom: 1.875rem;
+  font-size: var(--fs-basic);
+
 `;
 
 export const Celsius = styled.div`

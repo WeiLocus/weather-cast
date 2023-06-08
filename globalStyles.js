@@ -42,20 +42,23 @@ export const theme = {
   light: {
     bgColor:'#ededed',
     cardColor: '#f9f9f9',
+    cardColor1: 'rgba(114,185,220, 0.4)',
+    cardColor2: 'rgba(238,238,238, 0.4)',
     boxShadow:
-      '0 1px 4px 0 rgba(153,153,153)',
+      '0 0.3rem 0.5rem 0 rgba(153,153,153)',
     titleColor: '#212121',
-    temperatureColor: '#149ECA',
     textColor: '#3f3636',
+    cardImage:  "./images/bg-card.jpg",
 
   },
   dark: {
-    bgColor: '#1F2022',
+    bgColor: '#252525',
     cardColor: '#121416',
+    cardColor1: 'rgba(40,39,0, 0.8)',
+    cardColor2: 'rgba(40,39,30, 0.8)',
     boxShadow:
-      '0 1px 4px 0 rgba(0, 0, 0, 0.2)',
-    titleColor: '#f9f9fa',
-    temperatureColor: '#149ECA',
+      '0 0 0.3rem 0 rgba(90,90,90)',
+    titleColor: '#cdd6d9',
     textColor: '#cccccc',
   }
 }
