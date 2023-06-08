@@ -1,10 +1,14 @@
-import { StyledComponent } from "styled-components"
+import { GlobalStyle } from "../globalStyles"
+import { Container } from "./styles/style"
 
 function App() {
 
   return (
     <>
-    init project
+    <GlobalStyle />
+      <Container>
+
+      </Container>
     </>
   )
 }
