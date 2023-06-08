@@ -36,3 +36,26 @@ export const GlobalStyle = createGlobalStyle`
     font-family: var( --ff-basic);
   }
 `
+
+// theme
+export const theme = {
+  light: {
+    bgColor:'#ededed',
+    cardColor: '#f9f9f9',
+    boxShadow:
+      '0 1px 4px 0 rgba(153,153,153)',
+    titleColor: '#212121',
+    temperatureColor: '#149ECA',
+    textColor: '#3f3636',
+
+  },
+  dark: {
+    bgColor: '#1F2022',
+    cardColor: '#121416',
+    boxShadow:
+      '0 1px 4px 0 rgba(0, 0, 0, 0.2)',
+    titleColor: '#f9f9fa',
+    temperatureColor: '#149ECA',
+    textColor: '#cccccc',
+  }
+}
