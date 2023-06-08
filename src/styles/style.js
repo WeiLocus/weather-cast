@@ -28,7 +28,14 @@ export const TopCard = styled.div`
 
 export const BottomCard = styled.div`
   color: var(--color-secondary);
+
+  .day-icon {
+    position: absolute;
+    right: 2.5rem;
+    bottom: 4rem;
+  }
 `
+
 
 export const Location = styled.div`
   margin-bottom: 1.2rem;
