@@ -106,12 +106,25 @@ export const Refresh = styled.div`
 `;
 
 export const ThemeIcon = styled.div`
-  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .5;
+    }
+  }
+
   svg {
     position: absolute;
     bottom: 0.6rem;
     left: 1rem;
     font-size: var(--fs-big-100);
     color: ${ ( {theme} ) => theme.textColor };
+
+    &:hover {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      color: #c54d4d;
+    }
   }
 `
