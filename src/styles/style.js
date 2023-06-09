@@ -17,7 +17,6 @@ export const Card = styled.div`
     ${ ( {theme} ) => theme.cardColor2 }),url(${ ( {theme} ) => theme.cardImage });
   background-size: cover;
   box-shadow: ${ ( {theme} ) => theme.boxShadow };
-
   border-radius: 5px;
 ` 
 
@@ -28,6 +27,7 @@ export const TopCard = styled.div`
 `
 
 export const BottomCard = styled.div`
+  margin-bottom: 1rem;
   color: ${ ( {theme} ) => theme.textColor };
 
   .day-icon {
@@ -40,7 +40,7 @@ export const BottomCard = styled.div`
 
 export const Location = styled.div`
   margin-bottom: 1.2rem;
-  font-size: var(--fs-big-100);
+  font-size: var(--fs-big-200);
   color: ${ ( {theme} ) => theme.titleColor };
 `
 
@@ -59,7 +59,7 @@ export const Description = styled.div`
 
 export const Celsius = styled.div`
   font-weight: normal;
-  font-size: var(--fs-big-200);
+  font-size: var(--fs-big-300);
 `;
 
 export const AirFlow = styled.div`
@@ -92,7 +92,7 @@ export const Rain = styled.div`
 export const Refresh = styled.div`
   position: absolute;
   right: 1rem;
-  bottom: 1rem;
+  bottom: 0.8rem;
   display: inline-flex;
   align-items: flex-end;
   font-size: var(--fs-small);
@@ -102,5 +102,16 @@ export const Refresh = styled.div`
     height: auto;
     margin-left: 0.3rem;
   }
-  
+
 `;
+
+export const ThemeIcon = styled.div`
+  
+  svg {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 1rem;
+    font-size: var(--fs-big-100);
+    color: ${ ( {theme} ) => theme.textColor };
+  }
+`

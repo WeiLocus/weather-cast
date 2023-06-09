@@ -1,16 +1,23 @@
 import { GlobalStyle } from "../globalStyles"
-import { Container, Card, TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh } from "./styles/style"
+import { Container, Card, TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh, ThemeIcon } from "./styles/style"
 import { ThemeProvider } from "styled-components"
-import { theme } from "../globalStyles"
+import { lightTheme,darkTheme } from "../globalStyles"
 import { BsFillCloudRainFill, BsWind} from "react-icons/bs"
+import {CiLight, CiDark} from "react-icons/ci"
 import { AiOutlineReload } from "react-icons/ai"
 import { ReactComponent as Day} from "./assets/sun.svg"
 
+import { useState } from "react"
+
 function App() {
+  const [theme, setTheme] = useState('light')
+  const changeTheme = () => {
+    setTheme((currentTheme) => currentTheme === "light" ? "dark" : "light")
+  }
 
   return (
     <>
-    <ThemeProvider theme={theme.dark}>
+    <ThemeProvider theme={ theme === "light" ? darkTheme : lightTheme}>
       <GlobalStyle />
         <Container>
           <Card>
@@ -37,6 +44,10 @@ function App() {
                 上午12:00 <AiOutlineReload />
               </Refresh>
             </BottomCard>
+            <ThemeIcon onClick={changeTheme}>
+              {theme === "light" && <CiLight/>}
+              {theme === "dark" && <CiDark/> }
+            </ThemeIcon>
           </Card>
         </Container>
       </ThemeProvider>
