@@ -27,7 +27,7 @@ function App() {
                 {weatherData.locationName}
               </Location>
               <Temperature>
-                {weatherData.temperature}<Celsius>°C</Celsius>
+                {Math.round(weatherData.temperature)}<Celsius>°C</Celsius>
               </Temperature>
             </TopCard>
             <BottomCard>
@@ -42,7 +42,11 @@ function App() {
                 </Rain>
                 <Day className="day-icon"/>
               <Refresh>
-                {weatherData.observationTime} <AiOutlineReload />
+                {new Intl.DateTimeFormat('zh-tw', {
+                  hour: 'numeric',
+                  minute: 'numeric'
+                }).format(new Date(weatherData.observationTime)) 
+                } <AiOutlineReload />
               </Refresh>
             </BottomCard>
             <ThemeIcon onClick={changeTheme}>
