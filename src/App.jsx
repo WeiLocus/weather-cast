@@ -9,8 +9,18 @@ import { ReactComponent as Day} from "./assets/sun.svg"
 import { useSelector } from "react-redux"
 import { useState } from "react"
 import dayJs from "dayjs"
+import { useFetchWeatherQuery } from "./store"
+
+const LOCATION = "臺中"
+const AUTH_KEY = "CWB-FE3EAADB-ADEA-493D-BC79-CB0C1AEBD8FE"
+
 
 function App() {
+
+  const { data, error, isFetching} = useFetchWeatherQuery({AUTH_KEY,LOCATION})
+
+  console.log("fetchWeather data:",data)
+
   const [theme, setTheme] = useState('light')
   const changeTheme = () => {
     setTheme((currentTheme) => currentTheme === "light" ? "dark" : "light")
