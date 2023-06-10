@@ -8,6 +8,7 @@ import { AiOutlineReload } from "react-icons/ai"
 import { ReactComponent as Day} from "./assets/sun.svg"
 import { useSelector } from "react-redux"
 import { useState } from "react"
+import dayJs from "dayjs"
 
 function App() {
   const [theme, setTheme] = useState('light')
@@ -45,7 +46,7 @@ function App() {
                 {new Intl.DateTimeFormat('zh-tw', {
                   hour: 'numeric',
                   minute: 'numeric'
-                }).format(new Date(weatherData.observationTime)) 
+                }).format(dayJs(weatherData.observationTime)) 
                 } <AiOutlineReload />
               </Refresh>
             </BottomCard>
