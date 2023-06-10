@@ -23,7 +23,7 @@ function App() {
           <Card>
             <TopCard>
               <Location>
-                台中市
+                臺中市
               </Location>
               <Temperature>
                 30<Celsius>°C</Celsius>
@@ -41,7 +41,7 @@ function App() {
                 </Rain>
                 <Day className="day-icon"/>
               <Refresh>
-                上午12:00 <AiOutlineReload />
+                下午12:00 <AiOutlineReload />
               </Refresh>
             </BottomCard>
             <ThemeIcon onClick={changeTheme}>
