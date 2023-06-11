@@ -6,14 +6,16 @@ import { BsFillCloudRainFill, BsWind} from "react-icons/bs"
 import {CiLight, CiDark} from "react-icons/ci"
 import { AiOutlineReload } from "react-icons/ai"
 import { ReactComponent as Day} from "./assets/sun.svg"
-
+import { useSelector } from "react-redux"
 import { useState } from "react"
+import dayJs from "dayjs"
 
 function App() {
   const [theme, setTheme] = useState('light')
   const changeTheme = () => {
     setTheme((currentTheme) => currentTheme === "light" ? "dark" : "light")
   }
+  const weatherData = useSelector((state) => state.weather.data)
 
   return (
     <>
@@ -23,25 +25,29 @@ function App() {
           <Card>
             <TopCard>
               <Location>
-                台中市
+                {weatherData.locationName}
               </Location>
               <Temperature>
-                30<Celsius>°C</Celsius>
+                {Math.round(weatherData.temperature)}<Celsius>°C</Celsius>
               </Temperature>
             </TopCard>
             <BottomCard>
                 <Description>
-                  多雲時晴
+                  {weatherData.weatherType}
                 </Description>
                 <AirFlow>
-                  <BsWind/>10m/h
+                  <BsWind/>{weatherData.windSpeed}m/h
                 </AirFlow>
                 <Rain>
-                  <BsFillCloudRainFill/>66%
+                  <BsFillCloudRainFill/>{weatherData.rainPossibility}%
                 </Rain>
                 <Day className="day-icon"/>
               <Refresh>
-                上午12:00 <AiOutlineReload />
+                {new Intl.DateTimeFormat('zh-tw', {
+                  hour: 'numeric',
+                  minute: 'numeric'
+                }).format(dayJs(weatherData.observationTime)) 
+                } <AiOutlineReload />
               </Refresh>
             </BottomCard>
             <ThemeIcon onClick={changeTheme}>
