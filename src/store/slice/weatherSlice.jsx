@@ -10,6 +10,8 @@ const weatherSlice = createSlice({
       temperature: 0,
       rainPossibility: 0,
       observationTime: new Date(),
+      weatherCode: 0,
+      comfortability: "",
     },
     isLoading: false
   },

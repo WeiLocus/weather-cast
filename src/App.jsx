@@ -11,7 +11,6 @@ import { useEffect, useState } from "react"
 import dayJs from "dayjs"
 import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather } from "./store"
 import { useDispatch } from "react-redux"
-import { useCallback } from "react"
 
 const LOCATION = "臺南"
 const LOCATION_NAME = "臺南市 "
@@ -20,31 +19,16 @@ function App() {
   const dispatch = useDispatch()
 
   //data, error, isSuccess
-  const { data, isSuccess }  = useFetchWeatherQuery(LOCATION)
+  const { data }  = useFetchWeatherQuery(LOCATION)
+
+  const { data: forecastData} = useForecastRainAndTypeQuery(LOCATION_NAME)
+  console.log("fetchWeather data:", data)
+  console.log("forecastData",forecastData)
+
 
   useEffect(() => {
-    if (isSuccess) {
-    console.log("fetchWeather data:", data)
-    const locationData = data.records.location[0];
-    const weatherElements = locationData.weatherElement.reduce(
-      (neededElements, item) => {
-        if (['WDSD', 'TEMP'].includes(item.elementName)) {
-          neededElements[item.elementName] = item.elementValue;
-        }
-        return neededElements;
-      },{}
-    );
-    const currentWeather = {
-      locationName: locationData.locationName,
-      weatherType: '多雲時晴偶陣雨',
-      windSpeed: weatherElements.WDSD,
-      temperature: weatherElements.TEMP,
-      rainPossibility: 50,
-      observationTime: locationData.time.obsTime,
-    };
-    dispatch(setWeather(currentWeather))
-  }
-  },[data, dispatch, isSuccess])
+    data && dispatch(setWeather({...data, ...forecastData}))
+  },[dispatch,data, forecastData])
   
 
   const [theme, setTheme] = useState('light')
