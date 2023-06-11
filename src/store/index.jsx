@@ -1,4 +1,4 @@
-import { weatherReducer } from "./slice/weatherSlice";
+import { weatherReducer, setWeather } from "./slice/weatherSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { weatherApi } from "./api/weatherApi";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
@@ -17,3 +17,4 @@ export const store = configureStore({
 setupListeners(store.dispatch)
 
 export {useFetchWeatherQuery} from "./api/weatherApi"
+export { setWeather } from "./slice/weatherSlice"

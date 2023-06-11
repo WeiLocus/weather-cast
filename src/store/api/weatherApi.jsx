@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { weatherReducer, setWeather } from '../slice/weatherSlice'
+import { weatherReducer } from '../slice/weatherSlice'
 
-// const AUTH_KEY = "CWB-FE3EAADB-ADEA-493D-BC79-CB0C1AEBD8FE"
+const AUTH_KEY = "CWB-FE3EAADB-ADEA-493D-BC79-CB0C1AEBD8FE"
 // const LOCATION = "臺北"
 const URL = `https://opendata.cwb.gov.tw/`
 
@@ -17,15 +17,21 @@ const weatherApi = createApi({
     return {
       fetchWeather: builder.query({
         query: (data) => {
-          console.log("data", data)
           return {
-            url: `api/v1/rest/datastore/O-A0003-001?Authorization=${data.AUTH_KEY}&locationName=${data.LOCATION}`,
+            url: `api/v1/rest/datastore/O-A0003-001?Authorization=${AUTH_KEY}&locationName=${data}`,
           }
-        }
+        },
+        // transformResponse: (response, meta, arg) => {
+        //   console.log("response",response)
+        //   console.log("meta:", meta)
+        //   console.log("arg:", arg)
+        // }
       })
     }
   }
 })
+
+
 
 export const { useFetchWeatherQuery } = weatherApi
 export { weatherApi }
