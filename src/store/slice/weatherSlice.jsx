@@ -4,17 +4,18 @@ const weatherSlice = createSlice({
   name: "weather",
   initialState: {
     data: {
-      locationName: '臺中市',
-      weatherType: '多雲時晴',
-      windSpeed: 10,
-      temperature: 30.8,
-      rainPossibility: 66,
-      observationTime: '2023-06-10 11:00:00'
+      locationName: '',
+      weatherType: '',
+      windSpeed: 0,
+      temperature: 0,
+      rainPossibility: 0,
+      observationTime: new Date(),
     },
     isLoading: false
   },
   reducers: {
     setWeather(state,action) {
+      console.log("action",action)
       const newWeatherData = action.payload;
       state.data = newWeatherData;
     }
