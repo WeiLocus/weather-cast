@@ -9,13 +9,14 @@ const weatherSlice = createSlice({
       windSpeed: 0,
       temperature: 0,
       rainPossibility: 0,
-      observationTime: new Date(),
+      observationTime: new Date().toISOString(),
+      weatherCode: 0,
+      comfortability: "",
     },
     isLoading: false
   },
   reducers: {
     setWeather(state,action) {
-      console.log("action",action)
       const newWeatherData = action.payload;
       state.data = newWeatherData;
     }
