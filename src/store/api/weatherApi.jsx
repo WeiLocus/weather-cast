@@ -26,6 +26,18 @@ const weatherApi = createApi({
         //   console.log("meta:", meta)
         //   console.log("arg:", arg)
         // }
+      }),
+      forecastRainAndType: builder.query({
+        query: ( data) => {
+          return {
+            url: `api/v1/rest/datastore/F-C0032-001?Authorization=${AUTH_KEY}&locationName=${data}`
+          }
+        },
+        transformResponse: (response, meta, arg) => {
+          console.log("response",response)
+          console.log("meta:", meta)
+          console.log("arg:", arg)
+        }
       })
     }
   }
@@ -33,5 +45,5 @@ const weatherApi = createApi({
 
 
 
-export const { useFetchWeatherQuery } = weatherApi
+export const { useFetchWeatherQuery, useForecastRainAndTypeQuery } = weatherApi
 export { weatherApi }
