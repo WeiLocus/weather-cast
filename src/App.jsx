@@ -9,10 +9,12 @@ import { ReactComponent as Day} from "./assets/sun.svg"
 import { useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import dayJs from "dayjs"
-import { useFetchWeatherQuery, setWeather } from "./store"
+import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather } from "./store"
 import { useDispatch } from "react-redux"
+import { useCallback } from "react"
 
 const LOCATION = "臺南"
+const LOCATION_NAME = "臺南市 "
 
 function App() {
   const dispatch = useDispatch()
@@ -50,6 +52,7 @@ function App() {
     setTheme((currentTheme) => currentTheme === "light" ? "dark" : "light")
   }
   const weatherData = useSelector((state) => {
+    console.log("state",state.weather.data)
     return state.weather.data
   })
 

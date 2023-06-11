@@ -16,5 +16,5 @@ export const store = configureStore({
 
 setupListeners(store.dispatch)
 
-export {useFetchWeatherQuery} from "./api/weatherApi"
-export { setWeather } from "./slice/weatherSlice"
+export {useFetchWeatherQuery, useForecastRainAndTypeQuery} from "./api/weatherApi"
+export { weatherReducer ,setWeather } from "./slice/weatherSlice"
