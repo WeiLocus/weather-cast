@@ -21,11 +21,25 @@ const weatherApi = createApi({
             url: `api/v1/rest/datastore/O-A0003-001?Authorization=${AUTH_KEY}&locationName=${location}`,
           }
         },
-        // transformResponse: (response, meta, arg) => {
-        //   console.log("response",response)
-        //   console.log("meta:", meta)
-        //   console.log("arg:", arg)
-        // }
+        transformResponse: (response, meta, arg) => {
+          console.log("weather res",response)
+          const locationData = response.records.location[0];
+          const weatherElements = locationData.weatherElement.reduce(
+            (neededElements, item) => {
+              if (['WDSD', 'TEMP'].includes(item.elementName)) {
+                neededElements[item.elementName] = item.elementValue;
+              }
+              return neededElements;
+            },{}
+          );
+          const currentWeather = {
+            locationName: locationData.locationName,
+            windSpeed: weatherElements.WDSD,
+            temperature: weatherElements.TEMP,
+            observationTime: locationData.time.obsTime,
+          };
+          return currentWeather
+        },
       }),
       forecastRainAndType: builder.query({
         query: ( location) => {
