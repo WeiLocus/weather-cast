@@ -22,8 +22,8 @@ function App() {
   const { data }  = useFetchWeatherQuery(LOCATION)
 
   const { data: forecastData} = useForecastRainAndTypeQuery(LOCATION_NAME)
-  console.log("fetchWeather data:", data)
-  console.log("forecastData",forecastData)
+  // console.log("fetchWeather data:", data)
+  // console.log("forecastData",forecastData)
 
 
   useEffect(() => {
@@ -36,7 +36,6 @@ function App() {
     setTheme((currentTheme) => currentTheme === "light" ? "dark" : "light")
   }
   const weatherData = useSelector((state) => {
-    console.log("state",state.weather.data)
     return state.weather.data
   })
 
@@ -56,6 +55,7 @@ function App() {
             </TopCard>
             <BottomCard>
                 <Description>
+                  {weatherData.comfortability} ,
                   {weatherData.weatherType}
                 </Description>
                 <AirFlow>

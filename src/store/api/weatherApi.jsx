@@ -22,7 +22,6 @@ const weatherApi = createApi({
           }
         },
         transformResponse: (response, meta, arg) => {
-          console.log("weather res",response)
           const locationData = response.records.location[0];
           const weatherElements = locationData.weatherElement.reduce(
             (neededElements, item) => {
@@ -36,7 +35,7 @@ const weatherApi = createApi({
             locationName: locationData.locationName,
             windSpeed: weatherElements.WDSD,
             temperature: weatherElements.TEMP,
-            observationTime: locationData.time.obsTime,
+            // observationTime: locationData.time.obsTime,
           };
           return currentWeather
         },
