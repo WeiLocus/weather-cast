@@ -72,7 +72,7 @@ function App() {
                   { weatherData.rainPossibility < 0 ? <BiMessageAltError /> : `${weatherData.rainPossibility} %`
                   } 
                 </Rain>
-                <WeatherIcon />
+                <WeatherIcon weatherCode={weatherData.weatherCode}/>
               <Refresh>
                 {new Intl.DateTimeFormat('zh-tw', {
                   hour: 'numeric',

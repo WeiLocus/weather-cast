@@ -46,13 +46,25 @@ const weatherIcons = {
   }
 }
 
+const weatherCode = 4
+const codeToType = (weatherCode) => {
+  // 將 weatherTypes 物件轉換為一個包含鍵值對陣列的新陣列
+  console.log(Object.entries(weatherTypes));
+  const [weatherType] = Object.entries(weatherTypes).find(([type, code]) =>
+    code.includes(Number(weatherCode))) || [];
+
+  return weatherType;
+}
+
+console.log(codeToType(weatherCode))
+
 const IconContainer = styled.div`
   position: absolute;
   right: 2.5rem;
   bottom: 3rem;
 `
 
-function WeatherIcon() {
+function WeatherIcon({weatherCode}) {
   return (
     <IconContainer>
       <NightCloudSnow />
