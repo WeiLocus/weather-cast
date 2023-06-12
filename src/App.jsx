@@ -13,8 +13,8 @@ import dayJs from "dayjs"
 import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather } from "./store"
 import { useDispatch } from "react-redux"
 
-const LOCATION = "臺南"
-const LOCATION_NAME = "臺南市 "
+const LOCATION = "臺北"
+const LOCATION_NAME = "臺北市 "
 
 function App() {
   const dispatch = useDispatch()
