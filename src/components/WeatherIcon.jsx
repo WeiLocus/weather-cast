@@ -49,7 +49,7 @@ const weatherIcons = {
 
 const codeToType = (weatherCode) => {
   // 將 weatherTypes 物件轉換為一個包含鍵值對陣列的新陣列
-  console.log(Object.entries(weatherTypes));
+  // console.log(Object.entries(weatherTypes));
   const [weatherType] = Object.entries(weatherTypes).find(([type, code]) =>
     code.includes(Number(weatherCode))) || [];
 
