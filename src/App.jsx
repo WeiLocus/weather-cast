@@ -12,6 +12,7 @@ import { useEffect, useState } from "react"
 import dayJs from "dayjs"
 import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather } from "./store"
 import { useDispatch } from "react-redux"
+import WeatherIcon from "./components/WeatherIcon"
 
 const LOCATION = "臺北"
 const LOCATION_NAME = "臺北市 "
@@ -71,7 +72,8 @@ function App() {
                   { weatherData.rainPossibility < 0 ? <BiMessageAltError /> : `${weatherData.rainPossibility} %`
                   } 
                 </Rain>
-                <Day className="day-icon"/>
+                <WeatherIcon className="day-icon"/>
+                {/* <Day className="day-icon"/> */}
               <Refresh>
                 {new Intl.DateTimeFormat('zh-tw', {
                   hour: 'numeric',
