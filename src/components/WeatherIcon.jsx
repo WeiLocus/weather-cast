@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { ReactComponent as Strom } from "../assets/clouds-strom.svg"
+import { ReactComponent as Storm } from "../assets/clouds-strom.svg"
 import { ReactComponent as DayCloud } from "../assets/cloudy-sun.svg"
 import { ReactComponent as ClimateRainDay } from "../assets/climate-forecast-rain-day.svg"
 import { ReactComponent as Day } from "../assets/sun.svg"
@@ -33,7 +33,7 @@ const weatherIcons = {
     isCloudy: <DayCloud/>,
     isPartiallyClearWithRain: <ClimateRainDay/>,
     isFog: <DayFog />,
-    isStrom: <Strom/>,
+    isStorm: <Storm/>,
     isSnowing: <DayCloudSnow/>
   },
   night: {
@@ -41,12 +41,11 @@ const weatherIcons = {
     isCloudy: <NightCloud/>,
     isPartiallyClearWithRain: <ClimateRainNight/>,
     isFog: <NightFog />,
-    isStrom: <Strom/>,
+    isStorm: <Storm/>,
     isSnowing: <NightCloudSnow/>
   }
 }
 
-const weatherCode = 4
 const codeToType = (weatherCode) => {
   // 將 weatherTypes 物件轉換為一個包含鍵值對陣列的新陣列
   console.log(Object.entries(weatherTypes));
@@ -56,18 +55,19 @@ const codeToType = (weatherCode) => {
   return weatherType;
 }
 
-console.log(codeToType(weatherCode))
-
 const IconContainer = styled.div`
   position: absolute;
   right: 2.5rem;
   bottom: 3rem;
 `
 
-function WeatherIcon({weatherCode}) {
+function WeatherIcon({weatherCode, moment}) {
+  const weatherType = codeToType(weatherCode)
+  const weatherIcon = weatherIcons[moment][weatherType]
+
   return (
     <IconContainer>
-      <NightCloudSnow />
+      {weatherIcon}
     </IconContainer>
   )
 }

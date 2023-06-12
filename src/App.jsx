@@ -39,6 +39,7 @@ function App() {
     setTheme((currentTheme) => currentTheme === "light" ? "dark" : "light")
   }
   const weatherData = useSelector((state) => {
+    console.log(state.weather)
     return state.weather.data
   })
 
@@ -72,7 +73,7 @@ function App() {
                   { weatherData.rainPossibility < 0 ? <BiMessageAltError /> : `${weatherData.rainPossibility} %`
                   } 
                 </Rain>
-                <WeatherIcon weatherCode={weatherData.weatherCode}/>
+                <WeatherIcon weatherCode={weatherData.weatherCode} moment="night"/>
               <Refresh>
                 {new Intl.DateTimeFormat('zh-tw', {
                   hour: 'numeric',
