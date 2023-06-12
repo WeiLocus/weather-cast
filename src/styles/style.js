@@ -26,7 +26,7 @@ export const Card = styled.div`
 export const SearchLocation = styled.div`
   height: 2rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin-bottom: 1rem;
 
@@ -35,16 +35,23 @@ export const SearchLocation = styled.div`
     color: ${ ( {theme} ) => theme.titleColor };
   }
 
-  input {
-    font-size: var(--fs-big-basic);
-    color: ${ ( {theme} ) => theme.titleColor };
-    border: none;
-    background-color: transparent;
-
-    :focus {
-      outline: none;
-    }
+  .search {
+    cursor: pointer;
   }
+
+`
+
+export const Input = styled.select`
+  font-size: var(--fs-big-basic);
+  color: ${ ( {theme} ) => theme.titleColor };
+  border: none;
+  border-bottom: 1px solid ${ ( {theme} ) => theme.titleColor };
+  background-color: transparent;
+
+  :focus {
+    outline: none;
+  }
+  
 `
 
 export const CardContent = styled.div`

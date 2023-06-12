@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState, useMemo } from "react";
 import dayJs from "dayjs";
 import { ThemeProvider } from "styled-components";
-import { Container, Card, TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh, ThemeIcon, CardContent, SearchLocation } from "./styles/style";
+import { Container, Card, TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh, ThemeIcon, CardContent, SearchLocation, Input } from "./styles/style";
 import { lightTheme,darkTheme } from "../globalStyles";
 import { BsFillCloudRainFill, BsWind} from "react-icons/bs";
 import {CiLight, CiDark} from "react-icons/ci";
@@ -13,7 +13,7 @@ import { AiOutlineReload } from "react-icons/ai";
 import { BiMessageAltError, BiSearchAlt } from "react-icons/bi";
 import { MdLocationOn } from "react-icons/md"
 import WeatherIcon from "./components/WeatherIcon";
-import { getMoment } from "./utils/helpers";
+import { getMoment, availableLocations } from "./utils/helpers";
 
 const LOCATION = "臺北"
 const LOCATION_NAME = "臺北市"
@@ -51,7 +51,15 @@ function App() {
           <Card>
             <SearchLocation>
               <MdLocationOn className="location"/>
-              <input type="select" placeholder="Enter your location" />
+              <Input 
+                type="select"
+                placeholder="Enter your location" >
+                {availableLocations.map(({ cityName }) => (
+                  <option className="location-name" value={cityName} key={cityName}>
+                    {cityName}
+                  </option>
+                ))}
+              </Input>
               <BiSearchAlt className="search"/>
             </SearchLocation>
             <CardContent>
