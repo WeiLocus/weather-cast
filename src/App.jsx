@@ -5,6 +5,7 @@ import { lightTheme,darkTheme } from "../globalStyles"
 import { BsFillCloudRainFill, BsWind} from "react-icons/bs"
 import {CiLight, CiDark} from "react-icons/ci"
 import { AiOutlineReload } from "react-icons/ai"
+import { BiMessageAltError } from "react-icons/bi"
 import { ReactComponent as Day} from "./assets/sun.svg"
 import { useSelector } from "react-redux"
 import { useEffect, useState } from "react"
@@ -18,7 +19,6 @@ const LOCATION_NAME = "臺南市 "
 function App() {
   const dispatch = useDispatch()
 
-  //data, error, isSuccess
   const { data }  = useFetchWeatherQuery(LOCATION)
 
   const { data: forecastData} = useForecastRainAndTypeQuery(LOCATION_NAME)
@@ -27,7 +27,9 @@ function App() {
 
 
   useEffect(() => {
-    data && dispatch(setWeather({...data, ...forecastData}))
+    if (data && forecastData ) {
+      dispatch(setWeather({...data, ...forecastData}))
+    }
   },[dispatch,data, forecastData])
   
 
@@ -50,7 +52,8 @@ function App() {
                 {weatherData.locationName}
               </Location>
               <Temperature>
-                {Math.round(weatherData.temperature)}<Celsius>°C</Celsius>
+                { weatherData.temperature < 0 ? <BiMessageAltError /> : Math.round(weatherData.temperature)
+                }<Celsius>°C</Celsius>
               </Temperature>
             </TopCard>
             <BottomCard>
@@ -59,10 +62,14 @@ function App() {
                   {weatherData.weatherType}
                 </Description>
                 <AirFlow>
-                  <BsWind/>{weatherData.windSpeed}m/h
+                  <BsWind/>
+                  { weatherData.windSpeed < 0 ? <BiMessageAltError /> : `${weatherData.windSpeed }m/h`
+                  } 
                 </AirFlow>
                 <Rain>
-                  <BsFillCloudRainFill/>{weatherData.rainPossibility}%
+                  <BsFillCloudRainFill/>
+                  { weatherData.rainPossibility < 0 ? <BiMessageAltError /> : `${weatherData.rainPossibility} %`
+                  } 
                 </Rain>
                 <Day className="day-icon"/>
               <Refresh>

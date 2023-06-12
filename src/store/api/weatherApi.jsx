@@ -33,8 +33,8 @@ const weatherApi = createApi({
           );
           const currentWeather = {
             locationName: locationData.locationName,
-            windSpeed: weatherElements.WDSD,
-            temperature: weatherElements.TEMP,
+            windSpeed: parseInt(weatherElements.WDSD),
+            temperature: parseInt(weatherElements.TEMP),
             // observationTime: locationData.time.obsTime,
           };
           return currentWeather
@@ -56,8 +56,8 @@ const weatherApi = createApi({
           },{})
           const currentForecast = {
             weatherType: weatherElements.Wx.parameterName,
-            weatherCode: weatherElements.Wx.parameterValue,
-            rainPossibility: weatherElements.PoP.parameterName,
+            weatherCode: parseInt(weatherElements.Wx.parameterValue),
+            rainPossibility: parseInt(weatherElements.PoP.parameterName),
             comfortability: weatherElements.CI.parameterName,
           }
           return currentForecast
