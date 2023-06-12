@@ -1,18 +1,17 @@
 import { GlobalStyle } from "../globalStyles"
-import { Container, Card, TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh, ThemeIcon } from "./styles/style"
-import { ThemeProvider } from "styled-components"
-import { lightTheme,darkTheme } from "../globalStyles"
-import { BsFillCloudRainFill, BsWind} from "react-icons/bs"
-import {CiLight, CiDark} from "react-icons/ci"
-import { AiOutlineReload } from "react-icons/ai"
-import { BiMessageAltError } from "react-icons/bi"
-import { ReactComponent as Day} from "./assets/sun.svg"
-import { useSelector } from "react-redux"
-import { useEffect, useState } from "react"
-import dayJs from "dayjs"
-import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather } from "./store"
-import { useDispatch } from "react-redux"
-import WeatherIcon from "./components/WeatherIcon"
+import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather } from "./store";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import dayJs from "dayjs";
+import { ThemeProvider } from "styled-components";
+import { Container, Card, TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh, ThemeIcon } from "./styles/style";
+import { lightTheme,darkTheme } from "../globalStyles";
+import { BsFillCloudRainFill, BsWind} from "react-icons/bs";
+import {CiLight, CiDark} from "react-icons/ci";
+import { AiOutlineReload } from "react-icons/ai";
+import { BiMessageAltError } from "react-icons/bi";
+import WeatherIcon from "./components/WeatherIcon";
 
 const LOCATION = "臺北"
 const LOCATION_NAME = "臺北市 "
