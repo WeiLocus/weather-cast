@@ -2,7 +2,7 @@ import { GlobalStyle } from "../globalStyles"
 import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather, setLocation } from "./store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import dayJs from "dayjs";
 import { ThemeProvider } from "styled-components";
 import { Container, Card, TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh, ThemeIcon, CardContent, SearchLocation, Input } from "./styles/style";
@@ -20,6 +20,7 @@ const LOCATION_NAME = "臺北市"
 
 function App() {
   const dispatch = useDispatch()
+  const inputRef = useRef(null)
   // fetch data
   const { data }  = useFetchWeatherQuery(LOCATION)
   const { data: forecastData} = useForecastRainAndTypeQuery(LOCATION_NAME)
@@ -45,6 +46,10 @@ function App() {
     dispatch(setLocation(e.target.value))
   }
 
+  const handleSearch = () => {
+    console.log("ref:",inputRef.current.value)
+  }
+
   useEffect(() => {
     if (data && forecastData ) {
       dispatch(setWeather({...data, ...forecastData}))
@@ -62,7 +67,9 @@ function App() {
               <Input 
                 type="select"
                 placeholder="Enter your location"
+                defaultValue="臺中市"
                 value={selectCity}
+                ref={inputRef}
                 onChange={handleChangeLocation}>
                 {availableLocations.map(({ cityName }) => (
                   <option className="location-name" value={cityName} key={cityName}>
@@ -70,7 +77,7 @@ function App() {
                   </option>
                 ))}
               </Input>
-              <BiSearchAlt className="search"/>
+              <BiSearchAlt className="search" onClick={handleSearch}/>
             </SearchLocation>
             <CardContent>
               <TopCard>
