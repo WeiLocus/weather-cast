@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { useMemo } from "react"
 import { ReactComponent as Storm } from "../assets/clouds-strom.svg"
 import { ReactComponent as DayCloud } from "../assets/cloudy-sun.svg"
 import { ReactComponent as ClimateRainDay } from "../assets/climate-forecast-rain-day.svg"
@@ -62,7 +63,7 @@ const IconContainer = styled.div`
 `
 
 function WeatherIcon({weatherCode, moment}) {
-  const weatherType = codeToType(weatherCode)
+  const weatherType = useMemo(() => codeToType(weatherCode),[weatherCode])
   const weatherIcon = weatherIcons[moment][weatherType]
 
   return (
