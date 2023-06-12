@@ -29,12 +29,6 @@ export const TopCard = styled.div`
 export const BottomCard = styled.div`
   margin-bottom: 1rem;
   color: ${ ( {theme} ) => theme.textColor };
-
-  .day-icon {
-    position: absolute;
-    right: 2.5rem;
-    bottom: 4rem;
-  }
 `
 
 
