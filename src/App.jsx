@@ -1,5 +1,5 @@
 import { GlobalStyle } from "../globalStyles"
-import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather } from "./store";
+import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather, setLocation } from "./store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect, useState, useMemo } from "react";
@@ -33,15 +33,23 @@ function App() {
   const moment = useMemo(() => getMoment(LOCATION_NAME),[])
 
   // get state data
-  const weatherData = useSelector((state) => {
-    return state.weather.data
+  const{weatherData,selectCity}  = useSelector((state) => {
+    console.log(state.weather)
+    return {
+      weatherData: state.weather.data,
+      selectCity: state.city
+    }
   })
+
+  const handleChangeLocation = (e) => {
+    dispatch(setLocation(e.target.value))
+  }
 
   useEffect(() => {
     if (data && forecastData ) {
       dispatch(setWeather({...data, ...forecastData}))
     }
-  },[dispatch,data, forecastData])
+  },[dispatch, data, forecastData])
 
   return (
     <>
@@ -53,7 +61,9 @@ function App() {
               <MdLocationOn className="location"/>
               <Input 
                 type="select"
-                placeholder="Enter your location" >
+                placeholder="Enter your location"
+                value={selectCity}
+                onChange={handleChangeLocation}>
                 {availableLocations.map(({ cityName }) => (
                   <option className="location-name" value={cityName} key={cityName}>
                     {cityName}

@@ -22,6 +22,7 @@ const weatherSlice = createSlice({
       state.data = newWeatherData;
     },
     setLocation(state,action) {
+      console.log("payload:", action.payload)
       state.city = action.payload
     }
   }
