@@ -13,15 +13,19 @@ const weatherSlice = createSlice({
       weatherCode: 0,
       comfortability: "",
     },
-    isLoading: false
+    isLoading: false,
+    city: "臺北市"
   },
   reducers: {
     setWeather(state,action) {
       const newWeatherData = action.payload;
       state.data = newWeatherData;
+    },
+    setLocation(state,action) {
+      state.city = action.payload
     }
   }
 })
 
-export const { setWeather } = weatherSlice.actions
+export const { setWeather, setLocation } = weatherSlice.actions
 export const weatherReducer = weatherSlice.reducer
