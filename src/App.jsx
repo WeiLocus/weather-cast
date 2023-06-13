@@ -1,34 +1,26 @@
 import { GlobalStyle } from "../globalStyles"
-import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather, setLocation } from "./store";
+import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather, setLocation, toggleTheme } from "./store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useEffect, useState, useMemo, useRef } from "react";
-import dayJs from "dayjs";
+import { useEffect, useMemo } from "react";
 import { ThemeProvider } from "styled-components";
-import { Container, Card, TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh, ThemeIcon, CardContent, SearchLocation, Input } from "./styles/style";
+import { Container, Card } from "./styles/style";
 import { lightTheme,darkTheme } from "../globalStyles";
-import { BsFillCloudRainFill, BsWind} from "react-icons/bs";
-import {CiLight, CiDark} from "react-icons/ci";
-import { AiOutlineReload } from "react-icons/ai";
-import { BiMessageAltError, BiSearchAlt } from "react-icons/bi";
-import { MdLocationOn } from "react-icons/md"
-import WeatherIcon from "./components/WeatherIcon";
-import { getMoment, availableLocations, findLocation } from "./utils/helpers";
-
-const LOCATION = "臺北"
-const LOCATION_NAME = "臺北市"
+import { getMoment, findLocation } from "./utils/helpers";
+import WeatherCard from "./components/WeatherCard";
+import Search from "./components/Search";
 
 function App() {
   const dispatch = useDispatch()
-  const inputRef = useRef(null)
 
   // get state data
-  const{weatherData, selectCity}  = useSelector((state) => {
+  const{weatherData, selectCity, theme}  = useSelector((state) => {
     console.log(state.weather)
     console.log(state.weather.city)
     return {
       weatherData: state.weather.data,
-      selectCity: state.weather.city
+      selectCity: state.weather.city,
+      theme: state.weather.theme
     }
   })
 
@@ -42,12 +34,14 @@ function App() {
   const { data }  = useFetchWeatherQuery(locationName)
   const { data: forecastData} = useForecastRainAndTypeQuery(cityName)
 
-  // change theme
-  const [theme, setTheme] = useState('light')
+  // set theme
+  const currentTheme = theme === "light" ? darkTheme : lightTheme
+
   const changeTheme = () => {
-    setTheme((currentTheme) => currentTheme === "light" ? "dark" : "light")
+    dispatch(toggleTheme())
   }
 
+  // change location
   const handleChangeLocation = (e) => {
     dispatch(setLocation(e.target.value))
   }
@@ -55,9 +49,9 @@ function App() {
   // getMoment
   const moment = useMemo(() => getMoment(sunriseCityName),[sunriseCityName])
 
-  // const handleSearch = () => {
-  //   console.log("ref:",inputRef.current.value)
-  // }
+  const handleSearch = () => {
+
+  }
 
   useEffect(() => {
     if (data && forecastData ) {
@@ -67,67 +61,21 @@ function App() {
 
   return (
     <>
-    <ThemeProvider theme={ theme === "light" ? darkTheme : lightTheme}>
+    <ThemeProvider theme={currentTheme}>
       <GlobalStyle />
         <Container>
           <Card>
-            <SearchLocation>
-              <MdLocationOn className="location"/>
-              <Input 
-                type="select"
-                placeholder="Enter your location"
-                // defaultValue="臺中市"
-                value={selectCity}
-                ref={inputRef}
-                onChange={handleChangeLocation}
-                >
-                {availableLocations.map(({ cityName }) => (
-                  <option className="location-name" value={cityName} key={cityName}>
-                    {cityName}
-                  </option>
-                ))}
-              </Input>
-              <BiSearchAlt className="search" />
-            </SearchLocation>
-            <CardContent>
-              <TopCard>
-                <Location>
-                  {weatherData.locationName}
-                </Location>
-                <Temperature>
-                  { weatherData.temperature < 0 ? <BiMessageAltError /> : Math.round(weatherData.temperature)
-                  }<Celsius>°C</Celsius>
-                </Temperature>
-              </TopCard>
-              <BottomCard>
-                  <Description>
-                    {weatherData.comfortability} ,
-                    {weatherData.weatherType}
-                  </Description>
-                  <AirFlow>
-                    <BsWind/>
-                    { weatherData.windSpeed < 0 ? <BiMessageAltError /> : `${weatherData.windSpeed }m/h`
-                    } 
-                  </AirFlow>
-                  <Rain>
-                    <BsFillCloudRainFill/>
-                    { weatherData.rainPossibility < 0 ? <BiMessageAltError /> : `${weatherData.rainPossibility} %`
-                    } 
-                  </Rain>
-                  <WeatherIcon weatherCode={weatherData.weatherCode} moment={moment}/>
-                <Refresh>
-                  {new Intl.DateTimeFormat('zh-tw', {
-                    hour: 'numeric',
-                    minute: 'numeric'
-                  }).format(dayJs(weatherData.observationTime)) 
-                  } <AiOutlineReload />
-                </Refresh>
-              </BottomCard>
-              <ThemeIcon onClick={changeTheme}>
-                {theme === "light" && <CiLight/>}
-                {theme === "dark" && <CiDark/> }
-              </ThemeIcon>
-            </CardContent>
+            <Search
+              value={selectCity}
+              onChange={handleChangeLocation}
+              onClick={handleSearch}/>
+            <WeatherCard 
+              moment={moment}
+              onChange={handleChangeLocation}
+              weatherData={weatherData}
+              cityName={cityName}
+              theme={theme}
+              changeTheme={changeTheme}/>           
           </Card>
         </Container>
       </ThemeProvider>
