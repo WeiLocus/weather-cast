@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { weatherReducer } from "../index"
+import { forecastReducer } from "../index"
 
 const AUTH_KEY = "CWB-FE3EAADB-ADEA-493D-BC79-CB0C1AEBD8FE"
 // const LOCATION = "臺北"
 const URL = `https://opendata.cwb.gov.tw/`
 
 const forecastApi = createApi({
-  reducerPath: weatherReducer.name,
+  reducerPath: forecastReducer.name,
   baseQuery: fetchBaseQuery({
     baseUrl: URL,
   }),
@@ -19,6 +19,7 @@ const forecastApi = createApi({
           }
         },
         transformResponse: (response, meta, arg) => {
+          console.log("forecast meta:",meta)
           const locationData = response.records.location[0]
           const weatherElements = locationData.weatherElement.reduce((neededElements, item) => {
           if (["Wx", "PoP", "CI"].includes(item.elementName)) {
