@@ -21,8 +21,8 @@ function WeatherCard({moment, weatherData, theme, changeTheme, cityName, isFetch
       </TopCard>
       <BottomCard>
           <Description>
-            {weatherData.comfortability} ,
-            {weatherData.weatherType}
+            {`${weatherData.comfortability} ,
+            ${weatherData.weatherType}`}
           </Description>
           <AirFlow>
             <BsWind/>
