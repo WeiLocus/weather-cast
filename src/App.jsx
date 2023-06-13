@@ -10,6 +10,7 @@ import { BiSearchAlt } from "react-icons/bi";
 import { MdLocationOn } from "react-icons/md"
 import { getMoment, availableLocations, findLocation } from "./utils/helpers";
 import WeatherCard from "./components/WeatherCard";
+import Search from "./components/Search";
 
 function App() {
   const dispatch = useDispatch()
@@ -63,24 +64,10 @@ function App() {
       <GlobalStyle />
         <Container>
           <Card>
-            <SearchLocation>
-              <MdLocationOn className="location"/>
-              <Input 
-                type="select"
-                placeholder="Enter your location"
-                // defaultValue="臺中市"
-                value={selectCity}
-
-                onChange={handleChangeLocation}
-                >
-                {availableLocations.map(({ cityName }) => (
-                  <option className="location-name" value={cityName} key={cityName}>
-                    {cityName}
-                  </option>
-                ))}
-              </Input>
-              <BiSearchAlt className="search" onClick={handleSearch}/>
-            </SearchLocation>           
+            <Search
+              value={selectCity}
+              onChange={handleChangeLocation}
+              onClick={handleSearch}/>
             <WeatherCard 
               moment={moment}
               onChange={handleChangeLocation}
