@@ -79,7 +79,9 @@ function App() {
               weatherData={weatherData}
               cityName={cityName}
               theme={theme}
-              changeTheme={changeTheme}/>           
+              changeTheme={changeTheme}
+              isFetching={isFetching}
+              isForecastDataFetching={isForecastDataFetching}/>    
           </Card>
         </Container>
       </ThemeProvider>
