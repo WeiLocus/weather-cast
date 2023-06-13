@@ -61,4 +61,10 @@ export const StyleLoading = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${ ( {theme} ) => theme.bgColor };
+
+  svg {
+    width: 5rem;
+    height: auto;
+    color: ${ ( {theme} ) => theme.titleColor };
+  }
 `
