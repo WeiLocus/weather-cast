@@ -17,7 +17,7 @@ const weatherApi = createApi({
             url: `api/v1/rest/datastore/O-A0003-001?Authorization=${AUTH_KEY}&locationName=${location}`,
           }
         },
-        transformResponse: (response, meta, arg) => {
+        transformResponse: (response) => {
           const locationData = response.records.location[0];
           const weatherElements = locationData.weatherElement.reduce(
             (neededElements, item) => {
@@ -42,7 +42,7 @@ const weatherApi = createApi({
             url: `api/v1/rest/datastore/F-C0032-001?Authorization=${AUTH_KEY}&locationName=${location}`
           }
         },
-        transformResponse: (response, meta, arg) => {
+        transformResponse: (response) => {
           const locationData = response.records.location[0]
           const weatherElements = locationData.weatherElement.reduce((neededElements, item) => {
           if (["Wx", "PoP", "CI"].includes(item.elementName)) {

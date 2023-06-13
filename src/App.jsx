@@ -18,7 +18,6 @@ function App() {
 
   // get state data
   const{selectCity, theme, isOpen}  = useSelector((state) => {
-    console.log(state.weather.city)
     return {
       selectCity: state.weather.city,
       theme: state.weather.theme,
@@ -34,8 +33,6 @@ function App() {
   // fetch data
   const { data, isFetching, isError }  = useFetchWeatherQuery(locationName)
   const { data: forecastData, isFetching: isForecastDataFetching, isError: isForecastDataError} = useForecastRainAndTypeQuery(cityName)
-  console.log("weather data:", data)
-  console.log("forecast data:", forecastData)
 
   // set theme
   const currentTheme = theme === "light" ? darkTheme : lightTheme

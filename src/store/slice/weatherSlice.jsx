@@ -14,10 +14,10 @@ const weatherSlice = createSlice({
     setLocation(state,action) {
       state.city = action.payload
     },
-    toggleTheme(state,action) {
+    toggleTheme(state) {
     state.theme = state.theme === "light" ? "dark" : "light";
     },
-    toggleSearch(state,action) {
+    toggleSearch(state) {
       state.isOpen = !state.isOpen
     }
   }
