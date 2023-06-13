@@ -3,16 +3,11 @@ import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather, setLocat
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect, useState, useMemo, useRef } from "react";
-// import dayJs from "dayjs";
 import { ThemeProvider } from "styled-components";
-import { Container, Card, TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh, ThemeIcon, CardContent, SearchLocation, Input } from "./styles/style";
+import { Container, Card, SearchLocation, Input } from "./styles/style";
 import { lightTheme,darkTheme } from "../globalStyles";
-// import { BsFillCloudRainFill, BsWind} from "react-icons/bs";
-// import {CiLight, CiDark} from "react-icons/ci";
-// import { AiOutlineReload } from "react-icons/ai";
-import { BiMessageAltError, BiSearchAlt } from "react-icons/bi";
+import { BiSearchAlt } from "react-icons/bi";
 import { MdLocationOn } from "react-icons/md"
-// import WeatherIcon from "./components/WeatherIcon";
 import { getMoment, availableLocations, findLocation } from "./utils/helpers";
 import WeatherCard from "./components/WeatherCard";
 
@@ -53,9 +48,10 @@ function App() {
   // getMoment
   const moment = useMemo(() => getMoment(sunriseCityName),[sunriseCityName])
 
-  // const handleSearch = () => {
-  //   console.log("ref:",inputRef.current.value)
-  // }
+  const handleSearch = () => {
+    console.log("ref:",inputRef.current.value)
+
+  }
 
   useEffect(() => {
     if (data && forecastData ) {
@@ -85,15 +81,15 @@ function App() {
                   </option>
                 ))}
               </Input>
-              <BiSearchAlt className="search" />
-            </SearchLocation>
+              <BiSearchAlt className="search" onClick={handleSearch}/>
+            </SearchLocation>           
             <WeatherCard 
               moment={moment}
               onChange={handleChangeLocation}
               weatherData={weatherData}
-              selectCity={selectCity}
+              cityName={cityName}
               theme={theme}
-              changeTheme={changeTheme}/>
+              changeTheme={changeTheme}/>           
           </Card>
         </Container>
       </ThemeProvider>
