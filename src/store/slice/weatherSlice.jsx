@@ -14,7 +14,8 @@ const weatherSlice = createSlice({
       comfortability: "",
     },
     isLoading: false,
-    city: "臺北市"
+    city: "臺北市",
+    theme: "light",
   },
   reducers: {
     setWeather(state,action) {
@@ -22,11 +23,13 @@ const weatherSlice = createSlice({
       state.data = newWeatherData;
     },
     setLocation(state,action) {
-      console.log("payload:", action.payload)
       state.city = action.payload
-    }
+    },
+    toggleTheme(state,action) {
+    state.theme = state.theme === "light" ? "dark" : "light";
+  },
   }
 })
 
-export const { setWeather, setLocation } = weatherSlice.actions
+export const { setWeather, setLocation, toggleTheme } = weatherSlice.actions
 export const weatherReducer = weatherSlice.reducer

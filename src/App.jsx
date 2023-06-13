@@ -1,8 +1,8 @@
 import { GlobalStyle } from "../globalStyles"
-import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather, setLocation } from "./store";
+import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather, setLocation, toggleTheme } from "./store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { ThemeProvider } from "styled-components";
 import { Container, Card } from "./styles/style";
 import { lightTheme,darkTheme } from "../globalStyles";
@@ -14,12 +14,13 @@ function App() {
   const dispatch = useDispatch()
 
   // get state data
-  const{weatherData, selectCity}  = useSelector((state) => {
+  const{weatherData, selectCity, theme}  = useSelector((state) => {
     console.log(state.weather)
     console.log(state.weather.city)
     return {
       weatherData: state.weather.data,
-      selectCity: state.weather.city
+      selectCity: state.weather.city,
+      theme: state.weather.theme
     }
   })
 
@@ -33,12 +34,14 @@ function App() {
   const { data }  = useFetchWeatherQuery(locationName)
   const { data: forecastData} = useForecastRainAndTypeQuery(cityName)
 
-  // change theme
-  const [theme, setTheme] = useState('light')
+  // set theme
+  const currentTheme = theme === "light" ? darkTheme : lightTheme
+
   const changeTheme = () => {
-    setTheme((currentTheme) => currentTheme === "light" ? "dark" : "light")
+    dispatch(toggleTheme())
   }
 
+  // change location
   const handleChangeLocation = (e) => {
     dispatch(setLocation(e.target.value))
   }
@@ -58,7 +61,7 @@ function App() {
 
   return (
     <>
-    <ThemeProvider theme={ theme === "light" ? darkTheme : lightTheme}>
+    <ThemeProvider theme={currentTheme}>
       <GlobalStyle />
         <Container>
           <Card>
