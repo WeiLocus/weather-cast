@@ -14,11 +14,9 @@ function App() {
   const dispatch = useDispatch()
 
   // get state data
-  const{weatherData, selectCity, theme, isOpen}  = useSelector((state) => {
-    console.log(state.weather)
+  const{selectCity, theme, isOpen}  = useSelector((state) => {
     console.log(state.weather.city)
     return {
-      weatherData: state.weather.data,
       selectCity: state.weather.city,
       theme: state.weather.theme,
       isOpen: state.weather.isOpen
@@ -31,8 +29,10 @@ function App() {
   const { cityName, locationName, sunriseCityName} = currentLocation
 
   // fetch data
-  const { data, isFetching }  = useFetchWeatherQuery(locationName)
+  const { data, isFetching, isError }  = useFetchWeatherQuery(locationName)
   const { data: forecastData, isFetching: isForecastDataFetching} = useForecastRainAndTypeQuery(cityName)
+  console.log("weather data:", data)
+  console.log("forecast data:", forecastData)
 
   // set theme
   const currentTheme = theme === "light" ? darkTheme : lightTheme
@@ -54,14 +54,12 @@ function App() {
     dispatch(toggleSearch())
   }
 
-  useEffect(() => {
-    if (data && forecastData ) {
-      dispatch(setWeather({...data, ...forecastData}))
-    }
-  },[dispatch, data, forecastData])
-
-  return (
-    <>
+  if (isFetching) {
+    return <div>Loading</div>
+  } else if (isError) {
+    return <div>error fetch</div>
+  } else {
+    return (
     <ThemeProvider theme={currentTheme}>
       <GlobalStyle />
         <Container>
@@ -76,7 +74,8 @@ function App() {
             <WeatherCard 
               moment={moment}
               onChange={handleChangeLocation}
-              weatherData={weatherData}
+              weatherData={data}
+              forecastData={forecastData}
               cityName={cityName}
               theme={theme}
               changeTheme={changeTheme}
@@ -85,8 +84,36 @@ function App() {
           </Card>
         </Container>
       </ThemeProvider>
-    </>
   )
 }
+  }
+
+//   return (
+//     <ThemeProvider theme={currentTheme}>
+//       <GlobalStyle />
+//         <Container>
+//           <Card>
+//             <Search
+//               value={selectCity}
+//               onChange={handleChangeLocation}
+//               onClick={handleSearch}
+//               isOpen={isOpen}
+//               isFetching={isFetching}
+//               isForecastDataFetching={isForecastDataFetching}/>
+//             <WeatherCard 
+//               moment={moment}
+//               onChange={handleChangeLocation}
+//               weatherData={data}
+//               forecastData={forecastData}
+//               cityName={cityName}
+//               theme={theme}
+//               changeTheme={changeTheme}
+//               isFetching={isFetching}
+//               isForecastDataFetching={isForecastDataFetching}/>    
+//           </Card>
+//         </Container>
+//       </ThemeProvider>
+//   )
+// }
 
 export default App

@@ -7,7 +7,7 @@ import { AiOutlineReload } from "react-icons/ai";
 import { BiMessageAltError } from "react-icons/bi";
 
 
-function WeatherCard({moment, weatherData, theme, changeTheme, cityName, isFetching, isForecastDataFetching}) {
+function WeatherCard({moment, weatherData, forecastData, theme, changeTheme, cityName, isFetching, isForecastDataFetching}) {
   return (
     <CardContent>
       <TopCard>
@@ -21,8 +21,8 @@ function WeatherCard({moment, weatherData, theme, changeTheme, cityName, isFetch
       </TopCard>
       <BottomCard>
           <Description>
-            {`${weatherData.comfortability} ,
-            ${weatherData.weatherType}`}
+            {`${forecastData.comfortability} ,
+            ${forecastData.weatherType}`}
           </Description>
           <AirFlow>
             <BsWind/>
@@ -31,10 +31,10 @@ function WeatherCard({moment, weatherData, theme, changeTheme, cityName, isFetch
           </AirFlow>
           <Rain>
             <BsFillCloudRainFill/>
-            { weatherData.rainPossibility < 0 ? <BiMessageAltError /> : `${weatherData.rainPossibility} %`
+            { forecastData.rainPossibility < 0 ? <BiMessageAltError /> : `${forecastData.rainPossibility} %`
             } 
           </Rain>
-          <WeatherIcon weatherCode={weatherData.weatherCode} moment={moment}/>
+          <WeatherIcon weatherCode={forecastData.weatherCode} moment={moment}/>
         <Refresh>
           {new Intl.DateTimeFormat('zh-tw', {
             hour: 'numeric',
