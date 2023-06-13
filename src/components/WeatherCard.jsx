@@ -1,6 +1,6 @@
 import dayJs from "dayjs";
 import WeatherIcon from "./WeatherIcon"
-import { TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh, ThemeIcon, CardContent } from "../styles/style";
+import { TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh, ThemeIcon, CardContent } from "../styles/card";
 import { BsFillCloudRainFill, BsWind} from "react-icons/bs";
 import {CiLight, CiDark} from "react-icons/ci";
 import { AiOutlineReload } from "react-icons/ai";
