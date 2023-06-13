@@ -5,7 +5,7 @@ const AUTH_KEY = "CWB-FE3EAADB-ADEA-493D-BC79-CB0C1AEBD8FE"
 // const LOCATION = "臺北"
 const URL = `https://opendata.cwb.gov.tw/`
 
-const weatherForecastApi = createApi({
+const forecastApi = createApi({
   reducerPath: weatherReducer.name,
   baseQuery: fetchBaseQuery({
     baseUrl: URL,
@@ -41,5 +41,5 @@ const weatherForecastApi = createApi({
 
 
 
-export const { useForecastRainAndTypeQuery } = weatherForecastApi
-export { weatherForecastApi }
+export const { useForecastRainAndTypeQuery } = forecastApi
+export { forecastApi }

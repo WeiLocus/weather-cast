@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const forecastSlice = createSlice({
-  name: "weather",
+  name: "forecast",
   initialState: {
     data: {
       windSpeed: 0,
