@@ -4,9 +4,6 @@ const weatherSlice = createSlice({
   name: "weather",
   initialState: {
     data: {
-      locationName: '',
-      weatherType: '',
-      temperature: 0,
       observationTime: new Date().toISOString(),
     },
     isOpen: false,
@@ -14,10 +11,6 @@ const weatherSlice = createSlice({
     theme: "light",
   },
   reducers: {
-    setWeather(state,action) {
-      const newWeatherData = action.payload;
-      state.data = newWeatherData;
-    },
     setLocation(state,action) {
       state.city = action.payload
     },
@@ -30,5 +23,5 @@ const weatherSlice = createSlice({
   }
 })
 
-export const { setWeather, setLocation, toggleTheme, toggleSearch } = weatherSlice.actions
+export const { setLocation, toggleTheme, toggleSearch } = weatherSlice.actions
 export const weatherReducer = weatherSlice.reducer

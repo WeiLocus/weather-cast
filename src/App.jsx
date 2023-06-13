@@ -1,8 +1,8 @@
 import { GlobalStyle } from "../globalStyles"
-import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather, setLocation, toggleTheme, toggleSearch } from "./store";
+import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setLocation, toggleTheme, toggleSearch } from "./store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { ThemeProvider } from "styled-components";
 import { Container, Card } from "./styles/style";
 import { lightTheme,darkTheme } from "../globalStyles";
