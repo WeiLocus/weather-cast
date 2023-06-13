@@ -6,7 +6,7 @@ import { MdLocationOn } from "react-icons/md"
 function Search({selectCity, onChange, onClick}) {
   return (
     <SearchLocation>
-      <MdLocationOn className="location"/>
+      <BiSearchAlt className="search" onClick={onClick}/>
       <Input 
         type="select"
         placeholder="Enter your location"
@@ -21,7 +21,6 @@ function Search({selectCity, onChange, onClick}) {
           </option>
         ))}
       </Input>
-      <BiSearchAlt className="search" onClick={onClick}/>
     </SearchLocation> 
   )
 }

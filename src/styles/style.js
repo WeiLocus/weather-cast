@@ -26,8 +26,9 @@ export const Card = styled.div`
 export const SearchLocation = styled.div`
   height: 2rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
 
   .location, .search {
