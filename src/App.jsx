@@ -4,13 +4,14 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
 import { ThemeProvider } from "styled-components";
-import { Container, Card, StyleLoading, StyleError } from "./styles/style";
+import { Container, Card } from "./styles/style";
 import { lightTheme,darkTheme } from "../globalStyles";
 import { getMoment, findLocation } from "./utils/helpers";
 import WeatherCard from "./components/WeatherCard";
 import Search from "./components/Search";
 import {BarLoader} from "react-spinners";
 import { BiMessageAltError } from "react-icons/bi";
+import ThemeContainer from "./components/ThemeContainer"
 
 function App() {
   const dispatch = useDispatch()
@@ -58,23 +59,15 @@ function App() {
 
   if (isFetching || isForecastDataFetching) {
     return  (
-      <ThemeProvider theme={currentTheme}>
-        <GlobalStyle />
-        <StyleLoading>
-          <div>
-            <BarLoader color="#149ECA" height={10}/>
-          </div>
-        </StyleLoading>
-        </ThemeProvider>
+      <ThemeContainer currentTheme={currentTheme}>
+        <BarLoader color="#149ECA" height={10}/>
+      </ThemeContainer>
     )
   } else if (isError || isForecastDataError) {
     return  (
-      <ThemeProvider theme={currentTheme}>
-        <GlobalStyle />
-        <StyleError>
-          <BiMessageAltError />
-        </StyleError>
-      </ThemeProvider>
+      <ThemeContainer currentTheme={currentTheme}>
+        <BiMessageAltError />
+      </ThemeContainer>
     )
   } else {
     return (
