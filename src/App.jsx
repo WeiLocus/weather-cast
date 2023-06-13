@@ -1,5 +1,5 @@
 import { GlobalStyle } from "../globalStyles"
-import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather, setLocation, toggleTheme } from "./store";
+import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather, setLocation, toggleTheme, toggleSearch } from "./store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect, useMemo } from "react";
@@ -14,25 +14,25 @@ function App() {
   const dispatch = useDispatch()
 
   // get state data
-  const{weatherData, selectCity, theme}  = useSelector((state) => {
+  const{weatherData, selectCity, theme, isOpen}  = useSelector((state) => {
     console.log(state.weather)
     console.log(state.weather.city)
     return {
       weatherData: state.weather.data,
       selectCity: state.weather.city,
-      theme: state.weather.theme
+      theme: state.weather.theme,
+      isOpen: state.weather.isOpen
     }
   })
 
   // get location name
   const currentLocation = useMemo(() => findLocation(selectCity),[selectCity])
-  console.log("currentLocation",currentLocation)
 
   const { cityName, locationName, sunriseCityName} = currentLocation
 
   // fetch data
-  const { data }  = useFetchWeatherQuery(locationName)
-  const { data: forecastData} = useForecastRainAndTypeQuery(cityName)
+  const { data, isFetching }  = useFetchWeatherQuery(locationName)
+  const { data: forecastData, isFetching: isForecastDataFetching} = useForecastRainAndTypeQuery(cityName)
 
   // set theme
   const currentTheme = theme === "light" ? darkTheme : lightTheme
@@ -44,13 +44,14 @@ function App() {
   // change location
   const handleChangeLocation = (e) => {
     dispatch(setLocation(e.target.value))
+    dispatch(toggleSearch())
   }
 
   // getMoment
   const moment = useMemo(() => getMoment(sunriseCityName),[sunriseCityName])
 
   const handleSearch = () => {
-
+    dispatch(toggleSearch())
   }
 
   useEffect(() => {
@@ -68,7 +69,10 @@ function App() {
             <Search
               value={selectCity}
               onChange={handleChangeLocation}
-              onClick={handleSearch}/>
+              onClick={handleSearch}
+              isOpen={isOpen}
+              isFetching={isFetching}
+              isForecastDataFetching={isForecastDataFetching}/>
             <WeatherCard 
               moment={moment}
               onChange={handleChangeLocation}
