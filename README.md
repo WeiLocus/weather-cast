@@ -9,8 +9,10 @@ Weather cast
 
 ### Features 專案功能
 - 使用者可以點擊搜尋圖示，出現縣市選單後，查詢地點
+
 ![search](./public/images/search%20location.gif)
 - 使用者可以點擊左下角icon，切換深淺色模式
+
 ![](./public/images/light-to-dark-mode.gif)
 - 天氣圖案可以跟著日出日落的時間變換喔～
 
