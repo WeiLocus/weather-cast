@@ -1,13 +1,12 @@
 import dayJs from "dayjs";
 import WeatherIcon from "./WeatherIcon"
-import { TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Refresh, ThemeIcon, CardContent } from "../styles/card";
+import { TopCard, BottomCard, Location, Temperature, Celsius, Description, AirFlow, Rain, Time, ThemeIcon, CardContent } from "../styles/card";
 import { BsFillCloudRainFill, BsWind} from "react-icons/bs";
 import {CiLight, CiDark} from "react-icons/ci";
-import { AiOutlineReload } from "react-icons/ai";
 import { BiMessageAltError } from "react-icons/bi";
 
 
-function WeatherCard({moment, weatherData, theme, changeTheme, cityName, isFetching, isForecastDataFetching}) {
+function WeatherCard({moment, weatherData, forecastData, theme, changeTheme, cityName, isFetching, isForecastDataFetching}) {
   return (
     <CardContent>
       <TopCard>
@@ -21,8 +20,8 @@ function WeatherCard({moment, weatherData, theme, changeTheme, cityName, isFetch
       </TopCard>
       <BottomCard>
           <Description>
-            {weatherData.comfortability} ,
-            {weatherData.weatherType}
+            {`${forecastData.comfortability} ,
+            ${forecastData.weatherType}`}
           </Description>
           <AirFlow>
             <BsWind/>
@@ -31,18 +30,17 @@ function WeatherCard({moment, weatherData, theme, changeTheme, cityName, isFetch
           </AirFlow>
           <Rain>
             <BsFillCloudRainFill/>
-            { weatherData.rainPossibility < 0 ? <BiMessageAltError /> : `${weatherData.rainPossibility} %`
+            { forecastData.rainPossibility < 0 ? <BiMessageAltError /> : `${forecastData.rainPossibility} %`
             } 
           </Rain>
-          <WeatherIcon weatherCode={weatherData.weatherCode} moment={moment}/>
-        <Refresh>
+          <WeatherIcon weatherCode={forecastData.weatherCode} moment={moment}/>
+        <Time>
           {new Intl.DateTimeFormat('zh-tw', {
             hour: 'numeric',
             minute: 'numeric'
           }).format(dayJs(weatherData.observationTime)) 
           }
-          {(isFetching && isForecastDataFetching)? <AiOutlineReload className="animate-spin"/> : <AiOutlineReload className="load"/> }
-        </Refresh>
+        </Time>
       </BottomCard>
       <ThemeIcon onClick={changeTheme}>
         {theme === "light" && <CiLight/>}

@@ -6,7 +6,7 @@ import { setupListeners } from "@reduxjs/toolkit/dist/query";
 export const store = configureStore({
   reducer: {
     weather: weatherReducer,
-    [weatherApi.reducerPath]: weatherApi.reducer
+    [weatherApi.reducerPath]: weatherApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware()
@@ -17,4 +17,4 @@ export const store = configureStore({
 setupListeners(store.dispatch)
 
 export {useFetchWeatherQuery, useForecastRainAndTypeQuery} from "./api/weatherApi"
-export { weatherReducer ,setWeather, setLocation, toggleTheme, toggleSearch } from "./slice/weatherSlice"
+export { weatherReducer, setLocation, toggleTheme, toggleSearch } from "./slice/weatherSlice"

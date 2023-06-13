@@ -53,3 +53,12 @@ export const Input = styled.select`
   }
   
 `
+
+export const StyleLoading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: ${ ( {theme} ) => theme.bgColor };
+`

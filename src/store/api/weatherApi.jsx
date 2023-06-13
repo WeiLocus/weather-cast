@@ -1,12 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { weatherReducer, setWeather } from "../index"
+import { weatherReducer } from "../index"
 
 const AUTH_KEY = "CWB-FE3EAADB-ADEA-493D-BC79-CB0C1AEBD8FE"
-// const LOCATION = "臺北"
 const URL = `https://opendata.cwb.gov.tw/`
-
-// const URL = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=${AUTH_KEY}&locationName=${LOCATION}`
-
 
 const weatherApi = createApi({
   reducerPath: weatherReducer.name,
@@ -21,7 +17,7 @@ const weatherApi = createApi({
             url: `api/v1/rest/datastore/O-A0003-001?Authorization=${AUTH_KEY}&locationName=${location}`,
           }
         },
-        transformResponse: (response, meta, arg) => {
+        transformResponse: (response) => {
           const locationData = response.records.location[0];
           const weatherElements = locationData.weatherElement.reduce(
             (neededElements, item) => {
@@ -34,7 +30,7 @@ const weatherApi = createApi({
           const currentWeather = {
             locationName: locationData.locationName,
             windSpeed: parseInt(weatherElements.WDSD),
-            temperature: parseInt(weatherElements.TEMP),
+            temperature: Number(weatherElements.TEMP),
             // observationTime: locationData.time.obsTime,
           };
           return currentWeather
@@ -46,7 +42,7 @@ const weatherApi = createApi({
             url: `api/v1/rest/datastore/F-C0032-001?Authorization=${AUTH_KEY}&locationName=${location}`
           }
         },
-        transformResponse: (response, meta, arg) => {
+        transformResponse: (response) => {
           const locationData = response.records.location[0]
           const weatherElements = locationData.weatherElement.reduce((neededElements, item) => {
           if (["Wx", "PoP", "CI"].includes(item.elementName)) {

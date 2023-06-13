@@ -65,36 +65,13 @@ export const Rain = styled.div`
   }
 `;
 
-export const Refresh = styled.div`
+export const Time = styled.div`
   position: absolute;
   right: 1rem;
   bottom: 0.8rem;
   display: inline-flex;
   align-items: flex-end;
   font-size: var(--fs-small);
-
-  .load {
-    width: 1.2rem;
-    height: auto;
-    margin-left: 0.3rem;
-  }
-
-  .animate-spin {
-    width: 1.2rem;
-    height: auto;
-    margin-left: 0.3rem;
-    animation: spin 1s linear infinite;
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  }
-
 `;
 
 export const ThemeIcon = styled.div`
