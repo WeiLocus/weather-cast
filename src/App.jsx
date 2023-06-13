@@ -4,11 +4,9 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect, useState, useMemo } from "react";
 import { ThemeProvider } from "styled-components";
-import { Container, Card, SearchLocation, Input } from "./styles/style";
+import { Container, Card } from "./styles/style";
 import { lightTheme,darkTheme } from "../globalStyles";
-import { BiSearchAlt } from "react-icons/bi";
-import { MdLocationOn } from "react-icons/md"
-import { getMoment, availableLocations, findLocation } from "./utils/helpers";
+import { getMoment, findLocation } from "./utils/helpers";
 import WeatherCard from "./components/WeatherCard";
 import Search from "./components/Search";
 
