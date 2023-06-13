@@ -1,7 +1,6 @@
 import { SearchLocation, Input } from "../styles/style";
 import { availableLocations } from "../utils/helpers";
 import { BiSearchAlt } from "react-icons/bi";
-import { MdLocationOn } from "react-icons/md"
 
 function Search({selectCity, onChange, onClick,  isOpen, isFetching, isForecastDataFetching}) {
   return (

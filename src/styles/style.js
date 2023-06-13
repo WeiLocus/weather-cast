@@ -5,7 +5,6 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* min-width: 360px; */
   width: 100%;
   height: 100%;
   background-color: ${ ( {theme} ) => theme.bgColor };
@@ -31,15 +30,15 @@ export const SearchLocation = styled.div`
   gap: 1rem;
   margin-bottom: 1rem;
 
-  .location, .search {
+  .search {
     font-size: var(--fs-big-100);
     color: ${ ( {theme} ) => theme.titleColor };
-  }
-
-  .search {
     cursor: pointer;
-  }
 
+    :hover {
+      transform: scale(1.1);
+    }
+  }
 `
 
 export const Input = styled.select`
