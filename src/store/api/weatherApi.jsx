@@ -30,7 +30,7 @@ const weatherApi = createApi({
           const currentWeather = {
             locationName: locationData.locationName,
             windSpeed: parseInt(weatherElements.WDSD),
-            temperature: parseInt(weatherElements.TEMP),
+            temperature: Number(weatherElements.TEMP),
             // observationTime: locationData.time.obsTime,
           };
           return currentWeather
