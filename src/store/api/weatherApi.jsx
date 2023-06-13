@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { weatherReducer } from "../index"
 
 const AUTH_KEY = "CWB-FE3EAADB-ADEA-493D-BC79-CB0C1AEBD8FE"
-// const LOCATION = "臺北"
 const URL = `https://opendata.cwb.gov.tw/`
 
 const weatherApi = createApi({
