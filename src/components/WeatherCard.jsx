@@ -7,7 +7,7 @@ import { AiOutlineReload } from "react-icons/ai";
 import { BiMessageAltError } from "react-icons/bi";
 
 
-function WeatherCard({moment, weatherData, theme, changeTheme, cityName}) {
+function WeatherCard({moment, weatherData, theme, changeTheme, cityName, isFetching, isForecastDataFetching}) {
   return (
     <CardContent>
       <TopCard>
@@ -40,7 +40,8 @@ function WeatherCard({moment, weatherData, theme, changeTheme, cityName}) {
             hour: 'numeric',
             minute: 'numeric'
           }).format(dayJs(weatherData.observationTime)) 
-          } <AiOutlineReload />
+          }
+          {(isFetching && isForecastDataFetching)? <AiOutlineReload className="animate-spin"/> : <AiOutlineReload className="load"/> }
         </Refresh>
       </BottomCard>
       <ThemeIcon onClick={changeTheme}>
