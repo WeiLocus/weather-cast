@@ -2,7 +2,7 @@ import { GlobalStyle } from "../globalStyles"
 import { useFetchWeatherQuery, useForecastRainAndTypeQuery, setWeather, setLocation } from "./store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useEffect, useState, useMemo, useRef } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { ThemeProvider } from "styled-components";
 import { Container, Card, SearchLocation, Input } from "./styles/style";
 import { lightTheme,darkTheme } from "../globalStyles";
@@ -13,7 +13,6 @@ import WeatherCard from "./components/WeatherCard";
 
 function App() {
   const dispatch = useDispatch()
-  const inputRef = useRef(null)
 
   // get state data
   const{weatherData, selectCity}  = useSelector((state) => {
@@ -49,7 +48,6 @@ function App() {
   const moment = useMemo(() => getMoment(sunriseCityName),[sunriseCityName])
 
   const handleSearch = () => {
-    console.log("ref:",inputRef.current.value)
 
   }
 
@@ -72,7 +70,7 @@ function App() {
                 placeholder="Enter your location"
                 // defaultValue="臺中市"
                 value={selectCity}
-                ref={inputRef}
+
                 onChange={handleChangeLocation}
                 >
                 {availableLocations.map(({ cityName }) => (
