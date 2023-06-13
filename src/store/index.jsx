@@ -1,5 +1,5 @@
 import { weatherReducer } from "./slice/weatherSlice";
-import { forecastReducer } from "./slice/forecastApi";
+import { forecastReducer } from "./slice/forecastSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { weatherApi } from "./api/weatherApi";
 import { forecastApi } from "./api/forecastApi";
@@ -21,6 +21,7 @@ export const store = configureStore({
 
 setupListeners(store.dispatch)
 
-export {useFetchWeatherQuery, useForecastRainAndTypeQuery} from "./api/weatherApi"
+export {useFetchWeatherQuery} from "./api/weatherApi"
+export { useForecastRainAndTypeQuery} from "./api/forecastApi"
 export { weatherReducer ,setWeather, setLocation, toggleTheme, toggleSearch } from "./slice/weatherSlice"
-export { forecastReducer } from "./slice/forecastApi";
+export { forecastReducer } from "./slice/forecastSlice";
