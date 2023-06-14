@@ -23,6 +23,7 @@ export const Card = styled.div`
 
 
 export const SearchLocation = styled.div`
+  position: relative;
   height: 2rem;
   display: flex;
   justify-content: center;
@@ -39,19 +40,38 @@ export const SearchLocation = styled.div`
       transform: scale(1.1);
     }
   }
+
+  .wrapper {
+    width: 25%;
+    z-index: 0;
+    
+    &::after {
+      content: '';
+      border-style: solid;
+      border-width: 7px 4px 0 4px;
+      border-color: ${ ( {theme} ) => theme.titleColor } transparent transparent transparent;
+      position: absolute;
+      top: 50%;
+      /*以自己y軸的高度，移動-50%*/
+      transform: translateY(-50%);
+      z-index: -1;
+    }
+  }
 `
 
 export const Input = styled.select`
+  -webkit-appearance: none;
+  padding-right: 3px;
+  height: 2rem;
   font-size: var(--fs-big-basic);
   color: ${ ( {theme} ) => theme.titleColor };
   border: none;
-  border-bottom: 1px solid ${ ( {theme} ) => theme.titleColor };
   background-color: transparent;
+  cursor: pointer;
 
   :focus {
     outline: none;
   }
-  
 `
 
 export const StyleLoading = styled.div`
