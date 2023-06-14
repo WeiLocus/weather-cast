@@ -3,7 +3,7 @@ Weather cast
 
 ##  Overview 介紹
 ![UI](./public/images/theme-UI-1.png)
-這是一個用React 和 Vite 建置的專案
+這是一個用React、React-Redux-Toolkit-Query 和 Vite 建置的專案
 可以查詢即時天氣的網頁
 - 縣市、溫度、風速、降雨機率、天氣狀態、舒適度
 
@@ -48,10 +48,12 @@ ctrl/Command + c
 
 - node.js 16.16.0
 - vite 4.3.9
-- styled-components 5.3.10
-- vite-plugin-svgr 3.2.0
 - react 18.2.0
 - react-dom 18.2.0
+- react-redux ^8.0.7
+- react-icons ^4.9.0
+- styled-components 5.3.10
+- vite-plugin-svgr 3.2.0
 - react-spinners 0.13.8
 - dayjs 1.11.8
 - eslint 8.36.0
